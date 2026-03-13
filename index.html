@@ -4,57 +4,586 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huolimatta</title>
+    <meta name="description" content="Huolimatta — retriittejä ja palveluita rintasyövästä toipuville. Pysähdy, hengitä, palaa itseesi.">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --cream: #faf8f4;
             --warm-white: #f5f0eb;
+            --sage: #7a8f74;
             --sage-dark: #5c6e58;
+            --sage-deep: #3d4f3a;
+            --text-dark: #3a3a38;
             --text-light: #6b6b68;
+            --text-muted: #9a9a96;
+            --border: #e2ddd6;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 300;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+            background: var(--cream);
             color: var(--text-light);
+            line-height: 1.7;
         }
 
-        .container {
+        /* ── Hero ────────────────────────────────── */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
+            padding: 6rem 2rem 3rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
         }
 
-        h1 {
+        .brand {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-weight: 400;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3.5rem, 10vw, 7rem);
             color: var(--sage-dark);
-            margin-bottom: 1rem;
             letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
         }
 
-        .tagline {
+        .brand-tagline {
             font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             font-style: italic;
             font-family: 'Cormorant Garamond', serif;
-            font-weight: 400;
+            color: var(--text-muted);
+            margin-bottom: 3.5rem;
+        }
+
+        /* ── Team intro ─────────────────────────── */
+        .team {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member-initial {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--sage-dark);
+            color: var(--cream);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+
+        .team-member h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--sage-deep);
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+
+        .team-member p {
+            font-size: 0.78rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        /* ── Divider ────────────────────────────── */
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--border);
+            margin: 4rem auto;
+        }
+
+        /* ── Section shared ─────────────────────── */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* ── Products grid ──────────────────────── */
+        .products {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .products-grid > .card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .products-grid > .card > .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .products-grid > .card > .card-body > .card-actions {
+            margin-top: auto;
+        }
+
+        @media (max-width: 720px) {
+            .products-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            background: var(--warm-white);
+            overflow: hidden;
+        }
+
+        .card-images {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-hero {
+            width: 100%;
+            flex: 1;
+            object-fit: cover;
+            display: block;
+            min-height: 0;
+        }
+
+        .card-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .card-gallery img {
+            width: 100%;
+            aspect-ratio: 14 / 8;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        .card-cover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--border);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .card-images, .card-cover {
+            /* Both image areas use the same fixed aspect ratio */
+            aspect-ratio: 16 / 9;
+        }
+
+        .card-images {
+            overflow: hidden;
+        }
+
+        .card-cover img {
+            max-height: 100%;
+            width: auto;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        .card-top {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-top h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.6rem;
+            color: var(--sage-deep);
+            letter-spacing: -0.01em;
+        }
+
+        .card-top h2 a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .card-top h2 a:hover {
+            border-color: var(--sage-deep);
+        }
+
+        .card-badge {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sage);
+            border: 1px solid var(--sage);
+            padding: 0.2rem 0.6rem;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.2rem;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+        }
+
+        .card-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            color: var(--sage-deep);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .card-price span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .card-includes {
+            list-style: none;
+            margin-bottom: 2rem;
+            font-size: 0.82rem;
             color: var(--text-light);
         }
+
+        .card-includes li {
+            padding: 0.35rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .card-includes li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-size: 0.75rem;
+        }
+
+        .card-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .card-details { grid-template-columns: 1fr; }
+        }
+
+        .card-detail-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 0.15rem;
+        }
+
+        .card-detail-value {
+            color: var(--text-dark);
+            font-size: 0.85rem;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--cream);
+            background: var(--sage-dark);
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover { background: var(--sage-deep); }
+
+        .card-link {
+            font-size: 0.8rem;
+            color: var(--sage-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .card-link:hover { border-color: var(--sage-dark); }
+
+        .card-note {
+            margin-top: 1.25rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Footer ─────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        footer .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--sage-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        footer a {
+            color: var(--sage-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+        }
+
+        footer a:hover { border-color: var(--sage-dark); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Huolimatta</h1>
-        <p class="tagline">Pysähdy. Hengitä. Palaa itseesi.</p>
+
+    <!-- Hero + Team -->
+    <section class="hero">
+        <h1 class="brand">Huolimatta.</h1>
+        <p class="brand-tagline">Pysähdy. Hengitä. Palaa itseesi.</p>
+
+        <div class="team">
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-initial">T</div>
+                    <h3>Tiina Huhtanen</h3>
+                    <p>Sairaanhoitaja, teologian tohtori, sertifioitu hengitysvalmentaja ja kirjailija.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-initial">K</div>
+                    <h3>Kaisa Martinkauppi-Vanninen</h3>
+                    <p>Sairaanhoitaja, ratkaisukeskeinen terapeutti, MBCR-ohjaaja, taiji- ja qigong-harjoittaja.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-initial">M</div>
+                    <h3>Miia Merikallio</h3>
+                    <p>Syöpäsairaanhoitaja, palliatiivisen hoidon asiantuntija, kriisi- ja traumatyön osaaja.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-initial">S</div>
+                    <h3>Sanna Tiensuu-Piirainen</h3>
+                    <p>Kirjailija, sertifioitu terapeutti ja coach, kokonaisvaltaisen joogan ohjaaja.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Services -->
+    <div class="products">
+        <p class="section-label">Palvelut</p>
+
+        <div class="products-grid">
+
+            <!-- Retreat -->
+            <div class="card">
+                <div class="card-images">
+                    <img class="card-hero"
+                         src="https://thehappyhamlet.com/wp-content/uploads/2026/03/fall-hh-img_1924-scaled.jpg"
+                         alt="The Happy Hamlet syksyllä, Etelä-Ranska"
+                         loading="lazy">
+                    <div class="card-gallery">
+                        <img src="https://thehappyhamlet.com/wp-content/uploads/2020/11/2020-07-happyhamletyoga-88-websize.jpg" alt="Jooga" loading="lazy">
+                        <img src="https://thehappyhamlet.com/wp-content/uploads/2023/08/dji_20230822183203_0013_w-copy.jpeg" alt="Piha-alue" loading="lazy">
+                        <img src="https://thehappyhamlet.com/wp-content/uploads/2024/01/meals-img_4946.jpg" alt="Ruokailut" loading="lazy">
+                        <img src="https://thehappyhamlet.com/wp-content/uploads/2026/03/retreaters-sauna-img_1181.jpg" alt="Sauna" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-top">
+                        <h2><a href="https://thehappyhamlet.com/en/holidays/retreats/elvy-kukoista/" target="_blank" rel="noopener">Elvy ja kukoista</a></h2>
+                        <span class="card-badge">Retriitti</span>
+                    </div>
+
+                    <div class="card-meta">
+                        <span>26.–31.10.2026</span>
+                        <span>The Happy Hamlet, Etelä-Ranska</span>
+                        <span>5 yötä</span>
+                    </div>
+
+                    <div class="card-price">1 850 € <span>/ hlö, sis. ALV</span></div>
+
+                    <p class="card-description">
+                        Suomenkielinen retriitti naisille, jotka ovat läpikäyneet
+                        rintasyöpähoidot. Viisi yötä Etelä-Ranskan rauhassa — luentoja,
+                        lempeää liikettä, henkilökohtaista ohjausta ja aikaa hiljaisuudelle.
+                    </p>
+
+                    <ul class="card-includes">
+                        <li>Majoitus jaetuissa huoneissa (2–3 hlö), omat kylpyhuoneet</li>
+                        <li>Kaikki ateriat, välipalat ja juomat</li>
+                        <li>Ohjattu ohjelma: luennot, jooga, taiji, qigong, mindfulness</li>
+                        <li>Yksi henkilökohtainen terapia- tai coaching-sessio</li>
+                        <li>Retket lähiympäristöön ja ravintolalounas</li>
+                        <li>Hyvinvointikirja rintasyöpätoipumisesta</li>
+                        <li>Ryhmäkuljetus lentokentältä ja takaisin</li>
+                    </ul>
+
+                    <div class="card-details">
+                        <div>
+                            <div class="card-detail-label">Paikka</div>
+                            <div class="card-detail-value">The Happy Hamlet, Fauroux, Occitanie</div>
+                        </div>
+                        <div>
+                            <div class="card-detail-label">Kieli</div>
+                            <div class="card-detail-value">Suomi</div>
+                        </div>
+                        <div>
+                            <div class="card-detail-label">Majoitus</div>
+                            <div class="card-detail-value">Jaetut huoneet, omat kylpyhuoneet</div>
+                        </div>
+                        <div>
+                            <div class="card-detail-label">Ei sisälly</div>
+                            <div class="card-detail-value">Lennot, matkavakuutus</div>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <a href="https://thehappyhamlet.com/en/holidays/retreats/elvy-kukoista/" class="card-link" target="_blank" rel="noopener">Lisätietoja retriittipaikasta</a>
+                    </div>
+
+                    <p class="card-note">Yhteydenotot: <a href="mailto:tiina@satunnaisotus.fi" style="color: var(--sage-dark); text-decoration: none; border-bottom: 1px solid var(--border);">tiina@satunnaisotus.fi</a></p>
+                </div>
+            </div>
+
+            <!-- Book -->
+            <div class="card">
+                <div class="card-cover">
+                    <img src="https://www.tuumakustannus.fi/isot_tuotekuvat/9701.jpg"
+                         alt="Hyvinvointikirja rintasyövästä toipuvalle"
+                         loading="lazy">
+                </div>
+
+                <div class="card-body">
+                    <div class="card-top">
+                        <h2><a href="https://www.tuumakustannus.fi/Tiina-Huhtanen/Hyvinvointikirja-rintasy%C3%B6v%C3%A4st%C3%A4-toipuvalle.html" target="_blank" rel="noopener">Hyvinvointikirja rintasyövästä toipuvalle</a></h2>
+                        <span class="card-badge">Kirja</span>
+                    </div>
+
+                    <div class="card-meta">
+                        <span>Tiina Huhtanen &amp; Sanna Tiensuu-Piirainen</span>
+                        <span>Tuuma, 2025</span>
+                    </div>
+
+                    <div class="card-price">37,90 €</div>
+
+                    <p class="card-description">
+                        Rintasyövän lääketieteellinen hoito on Suomessa huipputasoa, mutta
+                        psyykkinen tuki jää usein vähäiseksi. Kirja yhdistää tietoa, harjoituksia
+                        ja keho–mieli-menetelmiä, jotka auttavat rakentamaan oman polun
+                        toipumiseen hoitojen jälkeen.
+                    </p>
+
+                    <div class="card-details">
+                        <div>
+                            <div class="card-detail-label">Sivumäärä</div>
+                            <div class="card-detail-value">262 sivua</div>
+                        </div>
+                        <div>
+                            <div class="card-detail-label">Muoto</div>
+                            <div class="card-detail-value">Kovakantinen</div>
+                        </div>
+                        <div>
+                            <div class="card-detail-label">Kustantaja</div>
+                            <div class="card-detail-value">Tuuma</div>
+                        </div>
+                        <div>
+                            <div class="card-detail-label">ISBN</div>
+                            <div class="card-detail-value">978-952-370-596-8</div>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <a href="https://www.tuumakustannus.fi/Tiina-Huhtanen/Hyvinvointikirja-rintasy%C3%B6v%C3%A4st%C3%A4-toipuvalle.html" class="card-link" target="_blank" rel="noopener">Osta Tuuman verkkokaupasta</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-brand">Huolimatta</p>
+        <p>Pysähdy. Hengitä. Palaa itseesi.</p>
+        <p style="margin-top: 1rem;"><a href="mailto:tiina@satunnaisotus.fi">tiina@satunnaisotus.fi</a></p>
+    </footer>
+
 </body>
 </html>
